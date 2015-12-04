@@ -3,12 +3,17 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"image"
 	"image/color"
-	"image/png"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+
+	_ "golang.org/x/image/bmp"
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
 )
 
 func main() {
@@ -26,7 +31,7 @@ func main() {
 	}
 	defer imageFile.Close()
 
-	img, err := png.Decode(imageFile)
+	img, _, err := image.Decode(imageFile)
 	if err != nil {
 		panic(err)
 	}
